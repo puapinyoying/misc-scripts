@@ -21,14 +21,15 @@
     #     http://stackoverflow.com/questions/1878882/arrays-in-unix-shell
     #     http://stackoverflow.com/questions/1951506/bash-add-value-to-array-without-specifying-a-ke
 
-# set the Internal Field Separator to new line, $ sign is important can also do IFS='\n\b'
-# Without this specification, the for loop will separate spaces, tabs AND newlines
+# set the Internal Field Separator to new line. The $ sign is important, can 
+# also do IFS='\n\b'. Without this specification, the for loop will separate 
+# values in lists by spaces, tabs AND newlines by default
 IFS=$'\n'
 
 # Find and make a list of all files in the current directory, specific == good
 # We want the original names and the renamed ones. Full paths can be handy
 
-# We must add the '\' in front of the space so cp command will understand
+# We must add the '\' in front of the space so 'cp' command will understand
 # Change '*.txtSensor?.txt' to whatever is specific to your filenames
 ORIG_FILENAMES=$(find $PWD -name '*.txtSensor?.txt' | sed 's/ /\ /')
 # for file in $ORIG_FILENAMES; do
@@ -38,7 +39,7 @@ ORIG_FILENAMES=$(find $PWD -name '*.txtSensor?.txt' | sed 's/ /\ /')
 NEW_FILENAMES=$(find $PWD -name '*.txtSensor?.txt' | sed 's/ /-/')
 # echo $NEW_FILENAMES
 
-# Turn these lists into an shell arrays so we can use indexes 
+# Turn these lists into an shell arrays so we can use indexes in for loop
 # Values are separate by '\n' because of the IFS=$'\n' above, not spaces
 orig_array=($ORIG_FILENAMES)
 
